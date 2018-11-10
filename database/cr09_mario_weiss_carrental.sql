@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 04. Nov 2018 um 18:50
+-- Erstellungszeit: 10. Nov 2018 um 16:15
 -- Server-Version: 10.1.30-MariaDB
 -- PHP-Version: 7.2.1
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `cr09_mario_weiss_carrental`
 --
+CREATE DATABASE IF NOT EXISTS `cr09_mario_weiss_carrental` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `cr09_mario_weiss_carrental`;
 
 -- --------------------------------------------------------
 
@@ -28,6 +30,7 @@ SET time_zone = "+00:00";
 -- Tabellenstruktur für Tabelle `adress`
 --
 
+DROP TABLE IF EXISTS `adress`;
 CREATE TABLE `adress` (
   `adress_id` int(11) NOT NULL,
   `related_id` varchar(25) DEFAULT NULL,
@@ -58,6 +61,7 @@ INSERT INTO `adress` (`adress_id`, `related_id`, `type`, `street`, `zip`, `city`
 -- Tabellenstruktur für Tabelle `car`
 --
 
+DROP TABLE IF EXISTS `car`;
 CREATE TABLE `car` (
   `car_id` int(11) NOT NULL,
   `vin` varchar(55) NOT NULL,
@@ -182,6 +186,7 @@ INSERT INTO `car` (`car_id`, `vin`, `type_id`, `make`, `model`, `year`, `seats`,
 -- Tabellenstruktur für Tabelle `car_type`
 --
 
+DROP TABLE IF EXISTS `car_type`;
 CREATE TABLE `car_type` (
   `car_type_id` int(11) NOT NULL,
   `name` varchar(55) NOT NULL,
@@ -214,6 +219,7 @@ INSERT INTO `car_type` (`car_type_id`, `name`, `description`) VALUES
 -- Tabellenstruktur für Tabelle `country`
 --
 
+DROP TABLE IF EXISTS `country`;
 CREATE TABLE `country` (
   `country_id` varchar(3) NOT NULL,
   `name` varchar(255) NOT NULL
@@ -500,6 +506,7 @@ INSERT INTO `country` (`country_id`, `name`) VALUES
 -- Tabellenstruktur für Tabelle `customer`
 --
 
+DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer` (
   `id` varchar(25) NOT NULL,
   `first_name` varchar(55) NOT NULL,
@@ -527,6 +534,7 @@ INSERT INTO `customer` (`id`, `first_name`, `last_name`, `licensenr`, `licensety
 -- Tabellenstruktur für Tabelle `drivinglicense`
 --
 
+DROP TABLE IF EXISTS `drivinglicense`;
 CREATE TABLE `drivinglicense` (
   `type` tinyint(4) NOT NULL,
   `class` varchar(25) NOT NULL
@@ -559,6 +567,7 @@ INSERT INTO `drivinglicense` (`type`, `class`) VALUES
 -- Tabellenstruktur für Tabelle `email`
 --
 
+DROP TABLE IF EXISTS `email`;
 CREATE TABLE `email` (
   `email_id` int(11) NOT NULL,
   `related_id` varchar(25) NOT NULL,
@@ -582,6 +591,7 @@ INSERT INTO `email` (`email_id`, `related_id`, `type`, `description`, `email_adr
 -- Tabellenstruktur für Tabelle `insurance_company`
 --
 
+DROP TABLE IF EXISTS `insurance_company`;
 CREATE TABLE `insurance_company` (
   `id` varchar(25) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -602,6 +612,7 @@ INSERT INTO `insurance_company` (`id`, `name`, `contact_person`, `description`) 
 -- Tabellenstruktur für Tabelle `insurance_product`
 --
 
+DROP TABLE IF EXISTS `insurance_product`;
 CREATE TABLE `insurance_product` (
   `id` int(11) NOT NULL,
   `company_id` varchar(25) NOT NULL,
@@ -626,6 +637,7 @@ INSERT INTO `insurance_product` (`id`, `company_id`, `name`, `price`, `descripti
 -- Tabellenstruktur für Tabelle `job_title`
 --
 
+DROP TABLE IF EXISTS `job_title`;
 CREATE TABLE `job_title` (
   `id` int(11) NOT NULL,
   `name` varchar(55) NOT NULL,
@@ -648,6 +660,7 @@ INSERT INTO `job_title` (`id`, `name`, `description`) VALUES
 -- Tabellenstruktur für Tabelle `location`
 --
 
+DROP TABLE IF EXISTS `location`;
 CREATE TABLE `location` (
   `id` int(11) NOT NULL,
   `name` varchar(55) NOT NULL,
@@ -672,6 +685,7 @@ INSERT INTO `location` (`id`, `name`, `description`, `adress_id`) VALUES
 -- Tabellenstruktur für Tabelle `phone_number`
 --
 
+DROP TABLE IF EXISTS `phone_number`;
 CREATE TABLE `phone_number` (
   `phone_id` int(11) NOT NULL,
   `related_id` varchar(25) NOT NULL,
@@ -717,6 +731,7 @@ INSERT INTO `phone_number` (`phone_id`, `related_id`, `type`, `description`, `ph
 -- Tabellenstruktur für Tabelle `rental`
 --
 
+DROP TABLE IF EXISTS `rental`;
 CREATE TABLE `rental` (
   `id` int(11) NOT NULL,
   `reservationlist_id` int(11) NOT NULL,
@@ -744,6 +759,7 @@ INSERT INTO `rental` (`id`, `reservationlist_id`, `customer_id`, `car_id`, `retu
 -- Tabellenstruktur für Tabelle `reservation`
 --
 
+DROP TABLE IF EXISTS `reservation`;
 CREATE TABLE `reservation` (
   `id` int(11) NOT NULL,
   `customer_id` varchar(25) NOT NULL,
@@ -765,6 +781,7 @@ INSERT INTO `reservation` (`id`, `customer_id`, `date`, `time`, `ip_adress`) VAL
 -- Tabellenstruktur für Tabelle `reservationlist`
 --
 
+DROP TABLE IF EXISTS `reservationlist`;
 CREATE TABLE `reservationlist` (
   `id` int(11) NOT NULL,
   `reservation_id` int(11) NOT NULL,
@@ -787,6 +804,7 @@ INSERT INTO `reservationlist` (`id`, `reservation_id`, `car_id`, `location_id`, 
 -- Tabellenstruktur für Tabelle `returnal`
 --
 
+DROP TABLE IF EXISTS `returnal`;
 CREATE TABLE `returnal` (
   `id` int(11) NOT NULL,
   `mileage` int(11) NOT NULL,
@@ -805,6 +823,7 @@ CREATE TABLE `returnal` (
 -- Tabellenstruktur für Tabelle `staff`
 --
 
+DROP TABLE IF EXISTS `staff`;
 CREATE TABLE `staff` (
   `id` int(11) NOT NULL,
   `first_name` varchar(55) NOT NULL,
@@ -845,6 +864,7 @@ INSERT INTO `staff` (`id`, `first_name`, `last_name`, `location_id`, `job_title_
 -- Tabellenstruktur für Tabelle `status`
 --
 
+DROP TABLE IF EXISTS `status`;
 CREATE TABLE `status` (
   `id` tinyint(4) NOT NULL,
   `name` varchar(55) NOT NULL,
@@ -1072,7 +1092,7 @@ ALTER TABLE `reservation`
 -- AUTO_INCREMENT für Tabelle `reservationlist`
 --
 ALTER TABLE `reservationlist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT für Tabelle `status`
